@@ -9,7 +9,7 @@ userRouter.post("", validateBody(userCreateSchema),validateEmail,registerUserCon
 
 userRouter.get("", validateToken,validateAdmin,listAllUsersController)
 
-userRouter.patch("/:id", validateBody(userUpdateSchema),validateId,validateAdminOrOwner,updateUserController)
+userRouter.patch("/:id",validateBody(userUpdateSchema),validateToken,validateId,validateAdminOrOwner,updateUserController)
 
 userRouter.delete("/:id", validateId,validateToken,validateAdmin,deleteUserController)
 

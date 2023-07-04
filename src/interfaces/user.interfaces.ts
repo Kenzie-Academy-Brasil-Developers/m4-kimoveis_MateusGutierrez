@@ -7,8 +7,9 @@ import { User } from "../entities";
 type UserCreate = z.infer<typeof userCreateSchema>;
 type UserRead = z.infer<typeof userReadSchema>;
 type UserReturn = z.infer<typeof userReturnSchema>;
+type Update = z.infer<typeof userUpdateSchema>
 type UserUpdate = DeepPartial<User>;
 
 type UserRepo = Repository<User>;
 
-export { UserCreate, UserRead, UserReturn, UserUpdate, UserRepo };
+export { UserCreate, UserRead, UserReturn, UserUpdate, UserRepo,Update};

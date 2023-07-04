@@ -20,6 +20,7 @@ const listAllUsersController = async (req: Request, res: Response): Promise<Resp
 const updateUserController = async (req: Request, res: Response): Promise<Response> => {
     const foundUser:User = res.locals.foundEntity
     const body: UserUpdate = req.body
+
     const payload:UserReturn = await updateUserService(foundUser, body)
     return res.status(200).json(payload)
 }

@@ -1,4 +1,5 @@
 import { User } from "../entities";
+import { AppError } from "../errors";
 import { UserCreate, UserRead, UserReturn, UserUpdate } from "../interfaces";
 import { userRepository } from "../repositories";
 import { userReadSchema, userReturnSchema} from "../schemas";
@@ -18,7 +19,11 @@ const listAllUsersService = async (admin: boolean): Promise<UserRead> =>{
     return userReadSchema.parse(list)
 }
 
-const updateUserService = async (user: User, payload: UserUpdate): Promise<UserReturn> => {
+const updateUserService = async (
+    user: User,
+    payload: UserUpdate,
+    ): Promise<UserReturn> => {
+
     const update = await userRepository.save({...user, ...payload})
     return userReturnSchema.parse(update)
 }

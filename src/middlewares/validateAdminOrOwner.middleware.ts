@@ -6,10 +6,10 @@ const validateAdminOrOwner =(
     res: Response,
     next: NextFunction
 ): void => {
-    const admin = res.locals.foundEntity.admin
-    const sub = res.locals.foundEntity.id
-
+    const admin = res.locals.decoded.admin
+    const sub = res.locals.decoded.sub
     const {id} = req.params
+
 
     if(admin) return next()
 
