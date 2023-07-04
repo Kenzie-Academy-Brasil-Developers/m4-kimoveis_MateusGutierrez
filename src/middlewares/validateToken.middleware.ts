@@ -12,11 +12,16 @@ export const validateToken = (
 
   const [_bearer, token]: Array<string> = authorization.split(" ");
 
-  res.locals = {
-    ...res.locals,
-    decoded: verify(token, process.env.SECRET_KEY!),
-  };
-
+  verify(token, process.env.SECRET_KEY!, (error: any,decoded: any) => {
+    if(error){
+      throw new AppError(error.message, 401)
+    }else{
+      res.locals ={
+        ...res.locals,
+        decoded
+      }
+    }
+  })
 
   return next();
 };

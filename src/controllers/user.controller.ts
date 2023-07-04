@@ -25,11 +25,6 @@ const updateUserController = async (req: Request, res: Response): Promise<Respon
 }
 
 const deleteUserController = async (req: Request, res: Response): Promise<Response> => {
-    // const idParams = Number(req.params)
-    // const verify = await userRepository.find({where: {id: idParams, admin: true}})
-    // if(verify){
-    //     throw new AppError()
-    // }
     await deleteUserService(res.locals.foundEntity)
     return res.status(204).json()
 }
