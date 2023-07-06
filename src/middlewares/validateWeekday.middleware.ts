@@ -7,7 +7,7 @@ const validateWeekday = async (req: Request, res: Response, next: NextFunction):
     const weekday = visitDate.getDay()
 
     if(weekday === 0 || weekday === 6){
-        throw new AppError("It is only possible to schedule a visit during weekdays (Monday to Friday).", 400)
+        throw new AppError("Invalid date, work days are monday to friday", 400)
     }
     return next() 
 }

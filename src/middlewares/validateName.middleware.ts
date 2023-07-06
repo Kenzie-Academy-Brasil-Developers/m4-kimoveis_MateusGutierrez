@@ -11,7 +11,7 @@ const validateName = async (req: Request, res: Response, next: NextFunction): Pr
     
     const nameExists: boolean = await repo.exist({ where: {name} })
     
-    if(nameExists) throw new AppError("Name already registered.", 409)
+    if(nameExists) throw new AppError("Category already exists", 409)
 
     return next()
 }

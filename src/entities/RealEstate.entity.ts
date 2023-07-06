@@ -9,9 +9,10 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from "typeorm";
-import { Category } from "./Categoties.entity";
+import { Category } from "./Category.entity";
 import { Address } from "./Address.entity";
 import { Schedule } from "./Schedules.entity";
+import { AddressCreate, CategoryCreate } from "../interfaces";
 
 @Entity("real_estate")
 export class RealEstate{
@@ -35,14 +36,13 @@ export class RealEstate{
 
     @OneToOne(() => Address, {cascade:true})
     @JoinColumn()
-    addresses: Address;
+    address: Address;
     
 
-    @ManyToOne(() => Category, (c) => c.real_estate)
-    categories: Category;
+    @ManyToOne(() => Category, (c) => c.realEstate)
+    category: Category;
 
-    @OneToMany(() => Schedule, (s) => s.real_estate)
+    @OneToMany(() => Schedule, (s) => s.realEstate)
     schedules: Array<Schedule>
-
 
 }

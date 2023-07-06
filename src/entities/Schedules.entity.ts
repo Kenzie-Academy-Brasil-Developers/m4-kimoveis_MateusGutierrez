@@ -19,7 +19,7 @@ export class Schedule{
     hour: string | Date;
 
     @ManyToOne(() => RealEstate, (re) => re.schedules)
-    real_estate: RealEstate
+    realEstate: RealEstate
     
     @ManyToOne(() => User, (u) => u.schedules)
     user: User;

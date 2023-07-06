@@ -4,13 +4,17 @@ import { realEstateSchema } from "./realEstate.schema"
 
 const schedulesSchema = z.object({
     id: z.number().positive(),
-    date:z.string().or(z.date()),
-    hour: z.string().or(z.date()),
+    date:z.string(),
+    hour: z.string(),
     realEstate: realEstateSchema,
     user: userSchema
 })
 
-const schedulesCreateSchema = schedulesSchema.omit({id:true,realEstate:true,user:true})
+const schedulesCreateSchema = z.object({
+    date:z.string(),
+    hour: z.string(),
+    realEstateId: z.number(),
+})
 const schedulesUpdateSchema = schedulesCreateSchema.partial()
 
 export {schedulesCreateSchema,schedulesSchema,schedulesUpdateSchema}

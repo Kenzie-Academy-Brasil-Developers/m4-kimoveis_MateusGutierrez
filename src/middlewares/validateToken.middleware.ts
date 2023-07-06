@@ -7,6 +7,7 @@ export const validateToken = (
   res: Response,
   next: NextFunction
 ): void => {
+
   const authorization: string | undefined = req.headers.authorization;
   if (!authorization) throw new AppError("Missing bearer token", 401);
 
@@ -22,6 +23,5 @@ export const validateToken = (
       }
     }
   })
-
   return next();
 };

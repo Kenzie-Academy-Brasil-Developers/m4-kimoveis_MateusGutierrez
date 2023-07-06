@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { scheduleRepository } from "../repositories";
+import { realEstateRepository, scheduleRepository } from "../repositories";
 import { AppError } from "../errors";
 
 const validateUserSchedule = async (req: Request, res: Response, next:NextFunction): Promise<void> => {
-    const userId = res.locals.foundEntity.id
-    console.log(userId)
+    const userId:number = Number(res.locals.decoded.sub)
     const {date,hour} = req.body
     const checkSchedule = await scheduleRepository
     .createQueryBuilder("schedule")
@@ -14,7 +13,17 @@ const validateUserSchedule = async (req: Request, res: Response, next:NextFuncti
     .getOne()
 
     if(checkSchedule){
-        throw new AppError("The user already has an appointment for the same date and time.", 409)
+        throw new AppError("User schedule to this real estate at this date and time already exists", 409)
+    }
+
+    const checkHourSchedule = await scheduleRepository
+    .createQueryBuilder("schedule")
+    .where("schedule.date = :date", {date})
+    .andWhere("schedule.hour = :hour", {hour})
+    .getOne()
+
+    if(checkHourSchedule){
+        throw new AppError("Schedule to this real estate at this date and time already exists", 409)
     }
     return next()
 }

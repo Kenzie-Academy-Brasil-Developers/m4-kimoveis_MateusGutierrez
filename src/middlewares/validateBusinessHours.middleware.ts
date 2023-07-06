@@ -8,7 +8,7 @@ const validateBusinessHours = async (req: Request, res: Response, next: NextFunc
     const visitHour = parseInt(hour.split(":")[0])
 
     if(visitHour < 8 || visitHour >= 18){
-        throw new AppError("It is only possible to schedule a visit during business hours (08:00 to 18:00).", 400)
+        throw new AppError("Invalid hour, available times are 8AM to 18PM", 400)
     }
     return next()
 }

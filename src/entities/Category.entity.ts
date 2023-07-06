@@ -14,6 +14,6 @@ export class Category{
     @Column({length: 45, unique: true})
     name: string;
 
-    @OneToMany(() => RealEstate, (re) => re.categories)
-    real_estate: Array<RealEstate>;
+    @OneToMany(() => RealEstate, (re) => re.category)
+    realEstate: Array<RealEstate>;
 }

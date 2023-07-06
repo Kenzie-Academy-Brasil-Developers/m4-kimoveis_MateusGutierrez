@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { validateAdmin, validateBody, validateName, validateToken } from "../middlewares";
+import { validateAdmin, validateBody, validateCategoryId, validateCategoryIdToRealEstate, validateName, validateToken } from "../middlewares";
 import { categoriesCreateSchema } from "../schemas";
-import { createCategoryController, readCategoryController } from "../controllers";
+import { createCategoryController, readAllRealEstateController, readCategoryController } from "../controllers";
 
 const categoriesRouter: Router = Router()
 
 categoriesRouter.post("",validateToken,validateAdmin,validateBody(categoriesCreateSchema),validateName,createCategoryController)
 categoriesRouter.get("", readCategoryController)
-categoriesRouter.get("/:id/realEstate")
+categoriesRouter.get("/:id/realEstate",validateCategoryIdToRealEstate,readAllRealEstateController)
 export {categoriesRouter}

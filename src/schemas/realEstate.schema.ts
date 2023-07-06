@@ -1,23 +1,26 @@
 import {z} from "zod"
-import { categoriesSchema } from "./categories.schema"
-import { addressesSchema } from "./addresses.schema"
+import { categoriesCreateSchema, categoriesSchema } from "./categories.schema"
+import { addressesCreateSchema, addressesSchema } from "./addresses.schema"
 
 const realEstateSchema = z.object({
     id: z.number().positive(),
     sold: z.boolean().default(() => false),
-    value: z.number().default(() => 0),
+    value: z.number().default(() => 0).or(z.string()),
     size: z.number().positive(),
-    createAt: z.string().or(z.date()),
-    updatedAt: z.string().or(z.date()),
+    createdAt: z.string(),
+    updatedAt: z.string(),
     address: addressesSchema,
-    categories: categoriesSchema
+    category: categoriesSchema
 })
 
-const realEstateCreateSchema = realEstateSchema.omit({
-    id: true,
-    createAt:true,
-    updatedAt: true
+const realEstateCreateSchema = z.object({
+    sold: z.boolean().default(() => false),
+    value: z.number().default(() => 0).or(z.string()),
+    size: z.number().positive(),
+    address: addressesCreateSchema,
+    categoryId: z.number()
 })
+
 const realEstateReadSchema = realEstateSchema.array()
 
 

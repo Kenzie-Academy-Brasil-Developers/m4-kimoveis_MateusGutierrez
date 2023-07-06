@@ -1,6 +1,8 @@
-import { Category } from "../entities"
-import { Categories, CategoryCreate, CategoryRead } from "../interfaces"
-import { categoryRepository } from "../repositories"
+import { Equal } from "typeorm"
+import { Category, RealEstate } from "../entities"
+import { AppError } from "../errors"
+import { Categories, CategoryCreate, CategoryRead, RealEstateRead } from "../interfaces"
+import { categoryRepository, realEstateRepository } from "../repositories"
 import { categoriesSchema, categoryReadSchema } from "../schemas"
 
 
@@ -16,4 +18,17 @@ const readCategoryService = async (): Promise<CategoryRead> =>{
     return categoryReadSchema.parse(list)
 }
 
-export {createCategoryService, readCategoryService}
+const readAllRealEstateService = async (id:number): Promise<Category> => {
+
+    const categories: Category | null = await categoryRepository.findOne({
+        relations:{
+            realEstate: true
+        },
+        where: {
+            id: id
+        }
+    })
+
+    return categories! 
+}
+export {createCategoryService, readCategoryService, readAllRealEstateService}
