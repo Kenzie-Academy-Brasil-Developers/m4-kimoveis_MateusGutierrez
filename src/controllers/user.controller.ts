@@ -2,8 +2,7 @@ import { Request, Response } from "express";
 import { UserCreate, UserRead, UserReturn, UserUpdate } from "../interfaces";
 import { deleteUserService, listAllUsersService, registerUserService, updateUserService } from "../services";
 import { User } from "../entities";
-import { userRepository } from "../repositories";
-import { AppError } from "../errors";
+
 
 
 const registerUserController = async (req: Request, res: Response): Promise<Response> => {

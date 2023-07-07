@@ -5,12 +5,31 @@ import { validateAdmin, validateAdminOrOwner, validateBody, validateEmail, valid
 
 const userRouter: Router = Router()
 
-userRouter.post("", validateBody(userCreateSchema),validateEmail,registerUserController)
+userRouter.post("",
+    validateBody(userCreateSchema),
+    validateEmail,
+    registerUserController
+)
 
-userRouter.get("", validateToken,validateAdmin,listAllUsersController)
+userRouter.get("",
+    validateToken,
+    validateAdmin,
+    listAllUsersController
+)
 
-userRouter.patch("/:id",validateBody(userUpdateSchema),validateToken,validateId,validateAdminOrOwner,updateUserController)
+userRouter.patch("/:id",
+    validateBody(userUpdateSchema),
+    validateToken,
+    validateId,
+    validateAdminOrOwner,
+    updateUserController
+)
 
-userRouter.delete("/:id", validateId,validateToken,validateAdmin,deleteUserController)
+userRouter.delete("/:id",
+    validateId,
+    validateToken,
+    validateAdmin,
+    deleteUserController
+)
 
 export {userRouter}

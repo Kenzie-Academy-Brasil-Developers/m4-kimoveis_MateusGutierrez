@@ -1,5 +1,4 @@
 import { Request, Response } from "express"
-import {ScheduleCreate,ScheduleDefault} from "../interfaces"
 import { createScheduleService,readScheduleService } from "../services"
 
 const createScheduleController = async (req: Request, res: Response): Promise<Response> => {

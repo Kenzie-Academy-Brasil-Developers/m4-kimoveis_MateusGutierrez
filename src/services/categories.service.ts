@@ -1,9 +1,7 @@
-import { Equal } from "typeorm"
 import { Category, RealEstate } from "../entities"
-import { AppError } from "../errors"
-import { Categories, CategoryCreate, CategoryRead, RealEstateRead } from "../interfaces"
-import { categoryRepository, realEstateRepository } from "../repositories"
-import { categoriesSchema, categoryReadSchema } from "../schemas"
+import { Categories, CategoryCreate, CategoryRead} from "../interfaces"
+import { categoryRepository} from "../repositories"
+import { categoryReadSchema } from "../schemas"
 
 
 

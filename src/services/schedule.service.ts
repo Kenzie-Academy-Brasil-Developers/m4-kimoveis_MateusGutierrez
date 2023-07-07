@@ -1,7 +1,6 @@
-import { RealEstate, Schedule } from "../entities"
-import { ScheduleCreate,ScheduleDefault,ScheduleRepo} from "../interfaces"
+import { RealEstate, Schedule, User } from "../entities"
+import { ScheduleCreate} from "../interfaces"
 import { realEstateRepository, scheduleRepository } from "../repositories"
-import { schedulesCreateSchema,schedulesSchema} from "../schemas"
 
 const createScheduleService = async (payload: ScheduleCreate): Promise<Object> => {
     const sched: Schedule = scheduleRepository.create(payload)
@@ -9,27 +8,22 @@ const createScheduleService = async (payload: ScheduleCreate): Promise<Object> =
     return {message: "Schedule created"}
 }
 
-const readScheduleService = async (id:number): Promise<Schedule> =>{
-    const sched: Schedule | null = await scheduleRepository.findOne({
-        relations:{
-            realEstate:{
-                address:true,
-                schedules:{
-                    user:true,
-                    realEstate:false,
-                },
-                category:true,
 
+
+const readScheduleService = async (id:number): Promise<RealEstate> =>{
+    const sched: RealEstate| null = await realEstateRepository.findOne({
+        relations:{
+            address:true,
+            schedules:{
+                user:true
             },
+            category:true
         },
         where:{
-            realEstate:{
-                id: id,
-            },
+            id
         },
         
     })
-    console.log(sched)
     return sched!
 }
 

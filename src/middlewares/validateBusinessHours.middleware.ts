@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { scheduleRepository } from "../repositories";
 import { AppError } from "../errors";
 
 const validateBusinessHours = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

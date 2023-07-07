@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { Category, User } from "../entities";
-import { categoryRepository, userRepository } from "../repositories";
+import { Category} from "../entities";
+import { categoryRepository } from "../repositories";
 import { AppError } from "../errors";
 
 const validateCategoryIdToRealEstate = async (

@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors";
-import { RealEstateRepo} from "../interfaces";
 import { addressRepository, realEstateRepository } from "../repositories";
-import { Address } from "../entities";
 import { AddressRepo } from "../interfaces/address.interface";
 
 const validateAddress = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

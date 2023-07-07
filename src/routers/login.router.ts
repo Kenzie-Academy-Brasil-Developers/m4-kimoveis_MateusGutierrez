@@ -5,6 +5,9 @@ import { login } from "../schemas";
 
 const loginRouter: Router = Router()
 
-loginRouter.post("", validateBody(login),loginController)
+loginRouter.post("",
+    validateBody(login),
+    loginController
+)
 
 export {loginRouter}
